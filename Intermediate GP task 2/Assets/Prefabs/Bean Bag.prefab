@@ -88,3 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e6777c0c9e91c4c97608b46c447998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  psuedo3dManager: {fileID: 0}
+  _3dPos: {x: 0, y: 0, z: 0}
+  currentDraggingVelocity: {x: 0, y: 0, z: 0}
