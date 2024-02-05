@@ -122,7 +122,7 @@ public class Beanbag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
                 if (ThreeDeePosition.y > psuedo3dManager.groundLevel)
                 {
-                    Debug.Log("WHEEEEEE");
+                    Debug.Log("WHEEEEEE: " + Vector3.Distance(ThreeDeePosition, psuedo3dManager.goalPosition.position));
                     //ThreeDeePosition += currentDraggingVelocity + new Vector3(0, 0, -currentDraggingVelocity.magnitude);
                     ThreeDeePosition += new Vector3(horizontalVelocity, verticalVelocity, -.8f) * Time.deltaTime * currentDraggingVelocity.magnitude * 6;
 
@@ -130,6 +130,16 @@ public class Beanbag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
 
                     //currentDraggingVelocity = new Vector3(currentDraggingVelocity.x * .9f, currentDraggingVelocity.y - 0.1f, 0);
+
+                    if (Vector3.Distance(ThreeDeePosition, psuedo3dManager.goalPosition.position) < 120 && ThreeDeePosition.z < -30)
+                    {
+                        psuedo3dManager.beanBagObjects.Remove(this.gameObject);
+                        Debug.Log("You scored a point, congrats!");
+                        psuedo3dManager.points++;
+
+                        Destroy(gameObject);
+
+                    }
                 }
                 else {
                     currentBeanState = BeanState.Landed;

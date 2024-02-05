@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Psuedo3DManager : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class Psuedo3DManager : MonoBehaviour
 
     public Canvas canvas;
 
+    public Transform goalPosition;
+
+    public int points;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +47,7 @@ public class Psuedo3DManager : MonoBehaviour
 
         }
 
+        goalPosition.localPosition += new Vector3(0, 0,backgroundDepth);
 
 
     }
@@ -50,9 +56,16 @@ public class Psuedo3DManager : MonoBehaviour
     void Update()
     {
         if (beanBagObjects.Count == 0) {
-            Debug.Log("You've lost! Reloading room...");
+            string gameMessage = points >= 1 ? "You won! The nightmare clown will let you go!" : "You've lost! Reloading room...";
+
+
+            Debug.Log(gameMessage);
             
-            
+            if (points == 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+            }
 
         
         }
